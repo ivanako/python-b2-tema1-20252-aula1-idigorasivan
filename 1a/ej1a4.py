@@ -63,23 +63,30 @@ tasks: Dict[int, Task] = {}
 
 def create_task(title: str) -> int:
     # Write here your code
-    pass
+    new_id = len(tasks) + 1
+    tasks[new_id] = Task(id=new_id, title=title, status=TaskStatus.PENDING)
+    
+    return new_id
 
 
 def change_task_status(task_id: int, new_status: TaskStatus) -> bool:
     # Write here your code
-    pass
+    if task_id in tasks:
+        tasks[task_id] = tasks[task_id]._replace(status=new_status)
+        return True
+    return False
 
 
 def list_tasks() -> None:
     # Write here your code
-    pass
+    for task in tasks.values():
+        print(f"ID: {task.id}, Title: {task.title}, Status: {task.status.value}")
 
 
 # Para probar el código, descomenta las siguientes líneas 
-# if __name__ == "__main__":
-#     id1 = create_task("Learn Python")
-#     id2 = create_task("Read Enum documentation")
-#     change_task_status(id1, TaskStatus.IN_PROGRESS)
-#     change_task_status(id2, TaskStatus.COMPLETED)
-#     list_tasks()
+if __name__ == "__main__":
+    id1 = create_task("Learn Python")
+    id2 = create_task("Read Enum documentation")
+    change_task_status(id1, TaskStatus.IN_PROGRESS)
+    change_task_status(id2, TaskStatus.COMPLETED)
+    list_tasks()

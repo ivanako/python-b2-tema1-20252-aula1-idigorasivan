@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 import pytest
-import pytz
+import pytz # type: ignore
 from ej1a2 import create_event, time_until_event, change_event_timezone, find_next_event  
 
 
